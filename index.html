@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Il Gazzettino</title>
+    <meta
+      name="description"
+      content="Un RSS reader in stile giornale cartaceo dedicato al feed del Corriere."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Fondamento:ital@0;1&family=Manufacturing+Consent&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="paper-grain"></div>
+    <main class="page">
+      <header class="masthead">
+        <div class="masthead-top">
+          <div class="masthead-brand">
+            <h1>Il Gazzettino</h1>
+            <p class="deck">
+              Il giornale al tuo fianco.
+            </p>
+            <p id="issue-date" class="issue-date"></p>
+          </div>
+          <div class="masthead-actions">
+            <button
+              id="refresh-feed"
+              class="refresh-button"
+              type="button"
+              aria-controls="stories"
+            >
+              Aggiorna
+            </button>
+          </div>
+        </div>
+        </div>
+      </header>
+
+      <section class="lead-grid" aria-label="Notizie in evidenza">
+        <article class="lead-story">
+          <div>
+            <p class="section-label">Apertura</p>
+            <div style="display: flex; gap: 20px; align-items: stretch;">
+              <h2 id="lead-title">Caricamento in corso</h2>
+              <div class="story-visual lead-visual">
+                <img
+                  id="lead-image"
+                  class="story-image"
+                  alt=""
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <p class="byline" id="lead-meta">Sto recuperando gli ultimi articoli.</p>
+            <p class="summary" id="lead-summary">
+              Attendi un momento: questa prima pagina si compone automaticamente dal feed
+              RSS del Corriere.
+            </p>
+            <a class="story-link story-link-icon" id="lead-link" href="#" target="_blank" rel="noreferrer">
+              <span aria-hidden="true">✉</span>
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <section class="news-desk">
+        <div class="column-head">
+          <p class="section-label">Ultime notizie</p>
+          <p id="feed-status" class="feed-status">Recupero degli articoli...</p>
+        </div>
+        <div
+          id="stories"
+          class="stories"
+          aria-live="polite"
+          aria-busy="true"
+        ></div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <a
+        href="https://xml2.corriereobjects.it/feed-hp/homepage-restyle-2025.xml"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Fonte RSS
+      </a>
+    </footer>
+
+    <template id="story-template">
+      <article class="story-card">
+        <div class="story-visual">
+          <img class="story-image" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="story-meta-row">
+          <p class="story-date"></p>
+        </div>
+        <h3 class="story-title"></h3>
+        <p class="story-summary"></p>
+        <a class="story-link story-link-icon" target="_blank" rel="noreferrer">
+          <span aria-hidden="true">✉</span>
+        </a>
+      </article>
+    </template>
+    <script src="./app.js"></script>
+  </body>
+</html>
