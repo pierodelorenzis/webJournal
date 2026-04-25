@@ -91,7 +91,7 @@ button {
 .masthead-actions {
   position: absolute;
   top: 20px;
-  right: 0;
+  right: 20px;
 }
 
 h1,
@@ -142,17 +142,17 @@ h3 {
   text-transform: uppercase;
   color: var(--ink);
   background: rgba(255, 248, 232, 0.86);
-  cursor: pointer;
   transition:
     transform 160ms ease,
     background-color 160ms ease,
     border-color 160ms ease;
 }
 
-.refresh-button:hover:not(:disabled) {
+.refresh-button:hover {
   transform: translateY(-1px);
   background: rgba(255, 251, 242, 0.98);
   border-color: rgba(126, 77, 44, 0.44);
+  cursor: pointer;
 }
 
 .refresh-button:focus-visible,
@@ -163,6 +163,10 @@ h3 {
 }
 
 .refresh-button:disabled {
+  opacity: 0.7;
+}
+
+.refresh-button[aria-disabled="true"] {
   cursor: progress;
   opacity: 0.7;
 }
@@ -195,6 +199,13 @@ h3 {
 
 .lead-story {
   display: block;
+}
+
+.lead-header-row {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  min-width: 0;
 }
 
 .story-meta-row {
@@ -246,6 +257,8 @@ h3 {
 
 .lead-story h2 {
   font-size: clamp(3rem, 6vw, 5.4rem);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .story-category,
@@ -364,6 +377,18 @@ h3 {
   overflow-wrap: break-word;
 }
 
+.story-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.story-title-row .story-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .story-summary {
   font-size: 1.2rem;
   color: var(--ink-soft);
@@ -377,13 +402,22 @@ h3 {
   justify-self: start;
   display: inline-grid;
   place-items: center;
+  flex: 0 0 auto;
+  cursor: pointer;
   width: 1.9rem;
   height: 1.9rem;
-  border: 1px solid rgba(126, 77, 44, 0.24);
-  border-radius: 999px;
   font-family: "Fondamento", serif;
   font-size: 1rem;
   line-height: 1;
+}
+
+.story-link-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.story-link-icon * {
+  cursor: pointer;
 }
 
 .story-card[data-size="xl"] .story-title {
@@ -503,4 +537,13 @@ h3 {
 
 .page-footer a {
   color: var(--accent);
+}
+
+button {
+  cursor: pointer;
+}
+
+.refresh-button {
+  position: relative;
+  z-index: 10;
 }

@@ -39,14 +39,13 @@
             </button>
           </div>
         </div>
-        </div>
       </header>
 
       <section class="lead-grid" aria-label="Notizie in evidenza">
         <article class="lead-story">
           <div>
             <p class="section-label">Apertura</p>
-            <div style="display: flex; gap: 20px; align-items: stretch;">
+            <div class="lead-header-row">
               <h2 id="lead-title">Caricamento in corso</h2>
               <div class="story-visual lead-visual">
                 <img
@@ -58,13 +57,12 @@
                 />
               </div>
             </div>
-            <p class="byline" id="lead-meta">Sto recuperando gli ultimi articoli.</p>
             <p class="summary" id="lead-summary">
               Attendi un momento: questa prima pagina si compone automaticamente dal feed
               RSS del Corriere.
             </p>
             <a class="story-link story-link-icon" id="lead-link" href="#" target="_blank" rel="noreferrer">
-              <span aria-hidden="true">✉</span>
+              <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M32 176C32 134.5 63.6 100.4 104 96.4L104 96L384 96C437 96 480 139 480 192L480 368L304 368C264.2 368 232 400.2 232 440L232 500C232 524.3 212.3 544 188 544C163.7 544 144 524.3 144 500L144 272L80 272C53.5 272 32 250.5 32 224L32 176zM268.8 544C275.9 530.9 280 515.9 280 500L280 440C280 426.7 290.7 416 304 416L552 416C565.3 416 576 426.7 576 440L576 464C576 508.2 540.2 544 496 544L268.8 544zM112 144C94.3 144 80 158.3 80 176L80 224L144 224L144 176C144 158.3 129.7 144 112 144z"/></svg></span>
             </a>
           </div>
         </article>
@@ -99,14 +97,13 @@
         <div class="story-visual">
           <img class="story-image" alt="" loading="lazy" decoding="async" />
         </div>
-        <div class="story-meta-row">
-          <p class="story-date"></p>
+        <div class="story-title-row">
+          <h3 class="story-title"></h3>
+          <a class="story-link story-link-icon" target="_blank" rel="noreferrer">
+            <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M32 176C32 134.5 63.6 100.4 104 96.4L104 96L384 96C437 96 480 139 480 192L480 368L304 368C264.2 368 232 400.2 232 440L232 500C232 524.3 212.3 544 188 544C163.7 544 144 524.3 144 500L144 272L80 272C53.5 272 32 250.5 32 224L32 176zM268.8 544C275.9 530.9 280 515.9 280 500L280 440C280 426.7 290.7 416 304 416L552 416C565.3 416 576 426.7 576 440L576 464C576 508.2 540.2 544 496 544L268.8 544zM112 144C94.3 144 80 158.3 80 176L80 224L144 224L144 176C144 158.3 129.7 144 112 144z"/></svg></span>
+          </a>
         </div>
-        <h3 class="story-title"></h3>
         <p class="story-summary"></p>
-        <a class="story-link story-link-icon" target="_blank" rel="noreferrer">
-          <span aria-hidden="true">✉</span>
-        </a>
       </article>
     </template>
     <script src="./app.js"></script>

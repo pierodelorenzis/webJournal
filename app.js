@@ -1,46 +1,49 @@
-const FEED_URL = "https://xml2.corriereobjects.it/feed-hp/homepage-restyle-2025.xml";
-const MAX_STORIES = 60;
-const FEED_FETCH_TIMEOUT_MS = 2600;
-const IMAGE_FETCH_TIMEOUT_MS = 1800;
-const IMAGE_LOOKUP_CONCURRENCY = 4;
-const FEED_CACHE_KEY = "ilgazzettino-feed-cache-v6";
-const IMAGE_CACHE_KEY = "ilgazzettino-image-cache-v1";
-const FEED_CACHE_TTL_MS = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  const FEED_URL = "https://xml2.corriereobjects.it/feed-hp/homepage-restyle-2025.xml";
+  const MAX_STORIES = 60;
+  const FEED_FETCH_TIMEOUT_MS = 2600;
+  const IMAGE_FETCH_TIMEOUT_MS = 1800;
+  const IMAGE_LOOKUP_CONCURRENCY = 4;
+  const FEED_CACHE_KEY = "ilgazzettino-feed-cache-v6";
+  const IMAGE_CACHE_KEY = "ilgazzettino-image-cache-v1";
+  const FEED_CACHE_TTL_MS = 0;
 
-const issueDate = document.querySelector("#issue-date");
-const feedStatus = document.querySelector("#feed-status");
-const storiesRoot = document.querySelector("#stories");
-const template = document.querySelector("#story-template");
-const refreshButton = document.querySelector("#refresh-feed");
+  const issueDate = document.querySelector("#issue-date");
+  const feedStatus = document.querySelector("#feed-status");
+  const storiesRoot = document.querySelector("#stories");
+  const template = document.querySelector("#story-template");
+  const refreshButton = document.querySelector("#refresh-feed");
+  let isLoadingFeed = false;
 
-const leadTitle = document.querySelector("#lead-title");
-const leadMeta = document.querySelector("#lead-meta");
-const leadSummary = document.querySelector("#lead-summary");
-const leadLink = document.querySelector("#lead-link");
-const leadImage = document.querySelector("#lead-image");
-const leadVisual = document.querySelector(".lead-visual");
+  const leadTitle = document.querySelector("#lead-title");
+  const leadSummary = document.querySelector("#lead-summary");
+  const leadLink = document.querySelector("#lead-link");
+  const leadImage = document.querySelector("#lead-image");
+  const leadVisual = document.querySelector(".lead-visual");
 
-if (!issueDate) console.error('issueDate not found');
-if (!feedStatus) console.error('feedStatus not found');
-if (!storiesRoot) console.error('storiesRoot not found');
-if (!template) console.error('template not found');
-if (!refreshButton) console.error('refreshButton not found');
-if (!leadTitle) console.error('leadTitle not found');
-if (!leadMeta) console.error('leadMeta not found');
-if (!leadSummary) console.error('leadSummary not found');
-if (!leadLink) console.error('leadLink not found');
-if (!leadImage) console.error('leadImage not found');
-if (!leadVisual) console.error('leadVisual not found');
+  if (!issueDate) console.error('issueDate not found');
+  if (!feedStatus) console.error('feedStatus not found');
+  if (!storiesRoot) console.error('storiesRoot not found');
+  if (!template) console.error('template not found');
+  if (!refreshButton) console.error('refreshButton not found');
+  if (!leadTitle) console.error('leadTitle not found');
+  if (!leadSummary) console.error('leadSummary not found');
+  if (!leadLink) console.error('leadLink not found');
+  if (!leadImage) console.error('leadImage not found');
+  if (!leadVisual) console.error('leadVisual not found');
 
-issueDate.textContent = new Intl.DateTimeFormat("it-IT", {
-  dateStyle: "full",
-}).format(new Date());
+  issueDate.textContent = new Intl.DateTimeFormat("it-IT", {
+    dateStyle: "full",
+  }).format(new Date());
 
-refreshButton.addEventListener("click", () => {
+  refreshButton.addEventListener("click", () => {
+    if (isLoadingFeed) {
+      return;
+    }
+    loadFeed();
+  });
+
   loadFeed();
-});
-
-loadFeed();
 
 async function loadFeed() {
   setLoadingState(true);
@@ -165,7 +168,6 @@ function mapItem(item) {
 
 function renderLead(story) {
   leadTitle.textContent = story.title;
-  leadMeta.textContent = story.pubDate;
   leadSummary.textContent = story.description;
   leadSummary.hidden = !story.description;
   leadLink.href = story.link;
@@ -288,7 +290,6 @@ function buildStoryRow(rowStories, startIndex) {
     const link = fragment.querySelector(".story-link");
 
     card.dataset.size = getStorySize(startIndex + offset);
-    fragment.querySelector(".story-date").textContent = story.pubDate;
     fragment.querySelector(".story-title").textContent = story.title;
     fragment.querySelector(".story-summary").textContent = story.description;
     fragment.querySelector(".story-summary").hidden = !story.description;
@@ -314,7 +315,8 @@ function renderError(error) {
 }
 
 function setLoadingState(isLoading) {
-  refreshButton.disabled = isLoading;
+  isLoadingFeed = isLoading;
+  refreshButton.setAttribute("aria-disabled", String(isLoading));
   refreshButton.textContent = isLoading ? "Aggiornamento..." : "Aggiorna";
 
   if (isLoading) {
@@ -736,3 +738,4 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 }
+});
