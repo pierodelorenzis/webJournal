@@ -133,7 +133,8 @@ h3 {
 .refresh-button {
   justify-self: end;
   border: 1px solid rgba(126, 77, 44, 0.28);
-  padding: 4px 8px;
+  padding: 6px 12px;
+  min-height: 40px;
   border-radius: 999px;
   font-family: "Fondamento", serif;
   font-size: 0.82rem;
@@ -175,7 +176,7 @@ h3 {
   margin: 0;
   max-width: 58ch;
   font-family: "Fondamento", serif;
-  font-size: clamp(2.22rem, 2.15vw, 1.62rem);
+  font-size: clamp(1.25rem, 2.15vw, 2.22rem);
   text-align: center;
   color: var(--ink-soft);
 }
@@ -234,6 +235,7 @@ h3 {
 .lead-visual {
   margin-bottom: 8px;
   flex: 0 0 50%;
+  min-width: 220px;
 }
 
 .story-image {
@@ -404,16 +406,16 @@ h3 {
   place-items: center;
   flex: 0 0 auto;
   cursor: pointer;
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 2.2rem;
+  height: 2.2rem;
   font-family: "Fondamento", serif;
   font-size: 1rem;
   line-height: 1;
 }
 
 .story-link-icon svg {
-  width: 1rem;
-  height: 1rem;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .story-link-icon * {
@@ -525,6 +527,163 @@ h3 {
   .story-row[data-columns="3"],
   .category-row {
     grid-template-columns: 1fr;
+  }
+
+  .category-row {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .lead-header-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .lead-visual {
+    min-width: 0;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .lead-story h2 {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+  }
+
+  .summary,
+  .story-summary {
+    font-size: 1.2rem;
+  }
+
+  .story-title {
+    font-size: clamp(1.4rem, 4.8vw, 2rem);
+  }
+
+  .story-card[data-size="xl"] .story-title,
+  .story-card[data-size="lg"] .story-title,
+  .story-card[data-size="md"] .story-title,
+  .story-card[data-size="sm"] .story-title {
+    font-size: clamp(1.35rem, 4.6vw, 2rem);
+  }
+
+  .story-card[data-size="xl"] .story-summary,
+  .story-card[data-size="md"] .story-summary,
+  .story-card[data-size="sm"] .story-summary {
+    font-size: 1.05rem;
+  }
+
+  .column-head {
+    gap: 8px;
+  }
+
+  .story-title-row {
+    align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: calc(100% - 12px);
+    margin: 6px auto;
+    padding: 12px;
+  }
+
+  .masthead {
+    padding-bottom: 14px;
+  }
+
+  h1 {
+    font-size: clamp(2.3rem, 12vw, 3.6rem);
+    letter-spacing: 0.03em;
+  }
+
+  .deck {
+    max-width: 32ch;
+    font-size: clamp(1rem, 4.8vw, 1.4rem);
+  }
+
+  .issue-date {
+    font-size: 0.9rem;
+  }
+
+  .feed-status {
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+  }
+
+  .lead-grid {
+    gap: 16px;
+    padding: 18px 0;
+  }
+
+  .news-desk {
+    padding-top: 14px;
+  }
+
+  .stories {
+    gap: 18px;
+  }
+
+  .story-row {
+    gap: 16px;
+  }
+
+  .category-group {
+    gap: 14px;
+  }
+
+  .category-heading {
+    font-size: 1.15rem;
+  }
+
+  .story-card {
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .story-link-icon {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .story-link-icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .refresh-button {
+    width: 100%;
+    justify-self: stretch;
+    min-height: 44px;
+    font-size: 0.88rem;
+  }
+
+  .masthead-actions {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .page {
+    width: 100%;
+    margin: 0;
+    border-left: 0;
+    border-right: 0;
+    box-shadow: none;
+  }
+
+  .section-label,
+  .feed-status,
+  .story-category,
+  .story-date,
+  .byline {
+    letter-spacing: 0.1em;
+    font-size: 0.66rem;
+  }
+
+  .summary,
+  .story-summary {
+    font-size: 1.02rem;
+    line-height: 1.18;
   }
 }
 
