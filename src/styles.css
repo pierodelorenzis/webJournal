@@ -207,6 +207,7 @@ h3 {
   gap: 20px;
   align-items: stretch;
   min-width: 0;
+  padding-bottom: 20px;
 }
 
 .story-meta-row {
@@ -261,6 +262,7 @@ h3 {
   font-size: clamp(3rem, 6vw, 5.4rem);
   min-width: 0;
   overflow-wrap: anywhere;
+  line-height: 1;
 }
 
 .story-category,

@@ -148,13 +148,15 @@ function parseXmlStories(xmlText) {
 }
 
 function mapItem(item) {
-  const title = readTagText(item, "title");
+  const title = decodeXmlEntities(readTagText(item, "title"));
   const link = readTagText(item, "link");
   const pubDate = readTagText(item, "pubDate");
   const descriptionSource =
     readTagText(item, "description") || readTagText(item, "content:encoded");
-  const description = cleanText(descriptionSource);
-  const category = readFirstCategory(item) || inferCategoryFromLink(link);
+  const description = cleanText(
+    decodeXmlEntities(descriptionSource)
+  );
+  const category = decodeXmlEntities(readFirstCategory(item)) || inferCategoryFromLink(link);
 
   return {
     title: title || "Titolo non disponibile",
@@ -737,5 +739,13 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function decodeXmlEntities(text) {
+  if (!text) return "";
+
+  const txt = document.createElement("textarea");
+  txt.innerHTML = text;
+  return txt.value;
 }
 });
