@@ -748,4 +748,20 @@ function decodeXmlEntities(text) {
   txt.innerHTML = text;
   return txt.value;
 }
+
+  // Bottone "Torna su"
+  const backToTopBtn = document.createElement('button');
+  backToTopBtn.className = 'back-to-top';
+  backToTopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+  backToTopBtn.setAttribute('aria-label', 'Torna all\'inizio');
+  document.body.appendChild(backToTopBtn);
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Lo mostriamo solo dopo un certo scroll per non intralciare la testata
+  window.addEventListener('scroll', () => {
+    backToTopBtn.classList.toggle('is-visible', window.scrollY > 400);
+  });
 });
